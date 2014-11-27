@@ -54,17 +54,17 @@ public abstract class BaseParser {
 	 */
 	public static String opStr(int opCode) {
 		switch (opCode) {
-		case Tree.AND:
+		case Parser.AND:
 			return "&&";
-		case Tree.EQ:
+		case Parser.EQUAL:
 			return "==";
-		case Tree.GE:
+		case Parser.GREATER_EQUAL:
 			return ">=";
-		case Tree.LE:
+		case Parser.LESS_EQUAL:
 			return "<=";
-		case Tree.NE:
+		case Parser.NOT_EQUAL:
 			return "!=";
-		case Tree.OR:
+		case Parser.OR:
 			return "||";
 		case Tree.PLUS:
 			return "+";
@@ -82,7 +82,7 @@ public abstract class BaseParser {
 		case Tree.LT:
 			return "<";
 		default:
-			return "unknow";
+			return "" + (char) opCode;
 		}
 	}
 }
