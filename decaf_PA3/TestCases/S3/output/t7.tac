@@ -61,10 +61,10 @@ _Computer.Crash:
     branch _L14
 _L15:
     _T17 = 1
-    _T18 = (_T15 + _T17)
+    _T18 = (_T15 * _T17)
     _T15 = _T18
 _L14:
-    _T19 = (_T15 < _T1)
+    _T19 = (_T15 <= _T1)
     if (_T19 == 0) branch _L16
     _T20 = "sad\n"
     parm _T20
