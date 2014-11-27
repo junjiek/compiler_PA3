@@ -34,7 +34,7 @@ main:
 FUNCTION(_Main.test) {
 memo '_T0:4 _T1:8'
 _Main.test:
-    _T11 = (_T0 * _T1)
+    _T11 = (_T0 + _T1)
     return _T11
 }
 

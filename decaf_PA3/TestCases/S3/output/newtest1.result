@@ -5,3 +5,6 @@ decaf.tacvm.exec.ExecuteException: memory access base = 0 offset = -4 out of bou
 	at decaf.tacvm.TacVM.run(Unknown Source)
 	at decaf.tacvm.TacVM.main(Unknown Source)
 ***Error at (83,10), tac = _T30 = *(_T27 - 4): memory access base = 0 offset = -4 out of bounds
+stack trace:
+	(84,18), tac = _T31 = (_T29 < _T30)
+	(157,5), tac = call _T67

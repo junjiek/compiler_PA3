@@ -31,7 +31,7 @@ if __name__ == '__main__':
         fw = open(os.path.join('output', bname+'.result'), 'w')
         if code == 0:  # Run the TAC simulator
             subprocess.call(
-                ['java', '-jar', 'tac.jar',
+                ['java', '-jar', '../../tac-orig.jar',
                  os.path.join('output', bname+'.tac')], stdout=fw,
                 stderr=subprocess.STDOUT)
 

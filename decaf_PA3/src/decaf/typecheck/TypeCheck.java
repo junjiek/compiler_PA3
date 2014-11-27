@@ -31,6 +31,10 @@ import decaf.error.RefNonStaticError;
 import decaf.error.SubNotIntError;
 import decaf.error.ThisInStaticFuncError;
 import decaf.error.UndeclVarError;
+import decaf.error.LvalueRequiredError;
+import decaf.error.IncompatSwitchError;
+import decaf.error.IncompatCaseError;
+import decaf.error.IncompatTestOpError;
 import decaf.frontend.Parser;
 import decaf.scope.ClassScope;
 import decaf.scope.FormalScope;
@@ -77,14 +81,65 @@ public class TypeCheck extends Tree.Visitor {
 						expr.expr.type.toString()));
 				expr.type = BaseType.ERROR;
 			}
-		}
-		else{
+		} else if(expr.tag == Tree.NOT) {
 			if (!(expr.expr.type.equal(BaseType.BOOL) || expr.expr.type
 					.equal(BaseType.ERROR))) {
 				issueError(new IncompatUnOpError(expr.getLocation(), "!",
 						expr.expr.type.toString()));
 			}
 			expr.type = BaseType.BOOL;
+		} else if(expr.tag == Tree.PREINC) {
+			if (expr.expr.type.equal(BaseType.ERROR)) {
+				expr.type = expr.expr.type;
+			} else if (!(expr.expr instanceof Tree.LValue)) {
+				issueError(new LvalueRequiredError(expr.expr.getLocation(), "++"));
+				expr.type = BaseType.ERROR;
+			} else if (!expr.expr.type.equal(BaseType.INT)) {
+				issueError(new IncompatUnOpError(expr.getLocation(), "++",
+						expr.expr.type.toString()));
+				expr.type = BaseType.ERROR;
+			} else {
+				expr.type = expr.expr.type;
+			}
+		} else if(expr.tag == Tree.POSTINC) {
+			if (expr.expr.type.equal(BaseType.ERROR)) {
+				expr.type = expr.expr.type;
+			} else if (!(expr.expr instanceof Tree.LValue)) {
+				issueError(new LvalueRequiredError(expr.expr.getLocation(), "++"));
+				expr.type = BaseType.ERROR;
+			} else if (!expr.expr.type.equal(BaseType.INT)) {
+				issueError(new IncompatUnOpError(expr.getLocation(), "++",
+						expr.expr.type.toString()));
+				expr.type = BaseType.ERROR;
+			} else {
+				expr.type = expr.expr.type;
+			}
+		} else if(expr.tag == Tree.PREDEC) {
+			if (expr.expr.type.equal(BaseType.ERROR)) {
+				expr.type = expr.expr.type;
+			} else if (!(expr.expr instanceof Tree.LValue)) {
+				issueError(new LvalueRequiredError(expr.expr.getLocation(), "--"));
+				expr.type = BaseType.ERROR;
+			} else if (!expr.expr.type.equal(BaseType.INT)) {
+				issueError(new IncompatUnOpError(expr.getLocation(), "--",
+						expr.expr.type.toString()));
+				expr.type = BaseType.ERROR;
+			} else {
+				expr.type = expr.expr.type;
+			}
+		} else if(expr.tag == Tree.POSTDEC) {
+			if (expr.expr.type.equal(BaseType.ERROR)) {
+				expr.type = expr.expr.type;
+			} else if (!(expr.expr instanceof Tree.LValue)) {
+				issueError(new LvalueRequiredError(expr.expr.getLocation(), "--"));
+				expr.type = BaseType.ERROR;
+			} else if (!expr.expr.type.equal(BaseType.INT)) {
+				issueError(new IncompatUnOpError(expr.getLocation(), "--",
+						expr.expr.type.toString()));
+				expr.type = BaseType.ERROR;
+			} else {
+				expr.type = expr.expr.type;
+			}
 		}
 	}
 
@@ -529,6 +584,96 @@ public class TypeCheck extends Tree.Visitor {
 		breaks.pop();
 	}
 
+	@Override
+	public void visitTernary(Tree.Ternary expr) {
+		expr.type = checkTernaryOp(expr.condition, expr.expr1, expr.expr2, expr.loc);
+	}
+
+	private Type checkTernaryOp(Tree.Expr condition, Tree.Expr expr1,
+								Tree.Expr expr2, Location location) {
+		condition.accept(this);
+		expr1.accept(this);
+		expr2.accept(this);
+		if (condition.type.equal(BaseType.ERROR) ||
+			expr1.type.equal(BaseType.ERROR) ||
+			expr2.type.equal(BaseType.ERROR)) {
+			return BaseType.ERROR;
+		}
+		if (!condition.type.equal(BaseType.BOOL)) {
+			issueError(new BadTestExpr(location));
+		}
+		if (!expr1.type.equal(expr2.type)) {
+			issueError(new IncompatTestOpError(location, expr1.type.toString(), expr2.type.toString()));
+		} else {
+			return expr1.type;
+		}
+		return BaseType.ERROR;
+	}
+
+	// Add switch-case
+	// TODO: breaks ?
+	@Override
+	public void visitSwitch(Tree.Switch myswitch) {
+		myswitch.condition.accept(this);
+		if (!myswitch.condition.type.equal(BaseType.INT)) {
+			issueError(new IncompatSwitchError(myswitch.condition.getLocation(),
+					   myswitch.condition.type.toString()));
+		}
+		breaks.add(myswitch);
+		if (myswitch.body != null) {
+			myswitch.body.accept(this);
+		}
+		breaks.pop();
+	}
+
+	@Override
+	public void visitSwitchBlock(Tree.SwitchBlock switchBlock) {
+		if (switchBlock.caseList != null) {
+			for(Tree s : switchBlock.caseList)
+				s.accept(this);
+		}
+		if (switchBlock.defaultCase != null) {
+			switchBlock.defaultCase.accept(this);
+		}
+	}
+
+	@Override
+	public void visitCase(Tree.Case mycase) {
+		mycase.condition.accept(this);
+		if (!mycase.condition.type.equal(BaseType.INT)) {
+			issueError(new IncompatCaseError(mycase.condition.getLocation()));
+		}
+		if (mycase.body != null) {
+			mycase.body.accept(this);
+		}
+	}
+
+	@Override
+	public void visitDefault(Tree.Default mydefault) {
+		if (mydefault.body != null) {
+			mydefault.body.accept(this);
+		}
+	}
+	@Override
+	public void visitCaseBlock(Tree.CaseBlock caseBlock) {	
+		if (caseBlock.body != null) {
+			for (Tree s : caseBlock.body) {
+				s.accept(this);
+			}
+		}
+	}
+
+	// Add RepeatLoop
+	@Override
+	public void visitRepeatLoop(Tree.RepeatLoop repeatLoop) {
+		checkTestExpr(repeatLoop.condition);
+		breaks.add(repeatLoop);
+		if (repeatLoop.loopBody != null) {
+			repeatLoop.loopBody.accept(this);
+		}
+		breaks.pop();
+	}
+
 	// visiting types
 	@Override
 	public void visitTypeIdent(Tree.TypeIdent type) {
@@ -579,7 +724,6 @@ public class TypeCheck extends Tree.Visitor {
 	private Type checkBinaryOp(Tree.Expr left, Tree.Expr right, int op, Location location) {
 		left.accept(this);
 		right.accept(this);
-
 		if (left.type.equal(BaseType.ERROR) || right.type.equal(BaseType.ERROR)) {
 			switch (op) {
 			case Tree.PLUS:

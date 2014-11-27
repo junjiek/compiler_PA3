@@ -19,7 +19,7 @@ memo ''
 main:
     _T5 = 10
     _T6 = 10
-    _T7 = (_T5 % _T6)
+    _T7 = (_T5 * _T6)
     _T4 = _T7
     parm _T4
     _T8 =  call _Main.isSquare
@@ -40,8 +40,8 @@ memo '_T0:4'
 _Main.isSquare:
     _T14 = 0
     _T12 = _T14
-    _T15 = (_T13 % _T13)
-    _T16 = (_T0 < _T15)
+    _T15 = (_T13 * _T13)
+    _T16 = (_T0 == _T15)
     return _T16
 }
 

@@ -1,0 +1,5 @@
+*** Error at (8,16): incompatible switch: string given,  int expected
+*** Error at (12,14): incompatible case: int constant is expected
+*** Error at (13,22): incompatible operands: int C bool
+*** Error at (15,31): incompatible operands: int C string
+*** Error at (16,22): incompatible case: int constant is expected

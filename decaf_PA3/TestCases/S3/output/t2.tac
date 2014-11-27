@@ -25,7 +25,7 @@ main:
     _T3 = _T8
     if (_T5 == 0) branch _L10
     _T9 = 5
-    _T10 = (_T3 % _T9)
+    _T10 = (_T3 * _T9)
     _T3 = _T10
 _L10:
     parm _T5
