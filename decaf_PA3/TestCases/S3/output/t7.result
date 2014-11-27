@@ -1,0 +1,6 @@
+Exception in thread "main" decaf.tacvm.exec.ExecuteException: The support of instanceof must be removed! Hint: remove parent field in VTable.
+	at decaf.tacvm.parser.BaseParser.createVTable(Unknown Source)
+	at decaf.tacvm.parser.Parser.yyparse(Unknown Source)
+	at decaf.tacvm.parser.BaseParser.parse(Unknown Source)
+	at decaf.tacvm.TacVM.run(Unknown Source)
+	at decaf.tacvm.TacVM.main(Unknown Source)

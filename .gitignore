@@ -1,6 +1,7 @@
 decaf_PA3/bin/
 decaf_PA3/result/
 *.class
+*.jar
 decaf_PA3/src/decaf/frontend/Parser.java
 decaf_PA3/src/decaf/frontend/Parser.output
 decaf_PA3/src/decaf/frontend/Lexer.java
