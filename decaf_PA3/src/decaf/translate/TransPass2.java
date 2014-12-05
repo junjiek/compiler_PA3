@@ -144,7 +144,6 @@ public class TransPass2 extends Tree.Visitor {
 					assign.expr.val);
 			break;
 		}
-		assign.val = assign.left.val;
 	}
 
 	@Override

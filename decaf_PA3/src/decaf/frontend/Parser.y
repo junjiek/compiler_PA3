@@ -265,10 +265,6 @@ Expr            :   LValue
                         $$.expr = $1.lvalue;
                     }
                 |   Call
-                |   LValue '=' Expr
-                    {
-                        $$.expr = new Tree.Assign($1.lvalue, $3.expr, $2.loc);
-                    }
                 |   Constant
                 |   Expr '+' Expr
                     {
