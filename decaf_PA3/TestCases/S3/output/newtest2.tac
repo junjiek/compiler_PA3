@@ -82,10 +82,13 @@ _L22:
     _T31 = 1
     _T32 = (_T3 > _T31)
     if (_T32 == 0) branch _L23
-    _T33 = ! _T29
-    _T34 = 2
-    _T35 = (_T3 / _T34)
-    _T3 = _T35
+    _T33 = _T29
+    _T34 = 1
+    _T35 = (_T29 + _T34)
+    _T29 = _T35
+    _T36 = 2
+    _T37 = (_T3 / _T36)
+    _T3 = _T37
     branch _L22
 _L23:
     return _T29
@@ -106,52 +109,52 @@ _Math.min:
 FUNCTION(main) {
 memo ''
 main:
-    _T36 = 1
-    _T37 = - _T36
-    parm _T37
-    _T38 =  call _Math.abs
-    parm _T38
-    call _PrintInt
-    _T39 = "\n"
+    _T38 = 1
+    _T39 = - _T38
     parm _T39
-    call _PrintString
-    _T40 = 2
-    _T41 = 3
+    _T40 =  call _Math.abs
     parm _T40
+    call _PrintInt
+    _T41 = "\n"
     parm _T41
-    _T42 =  call _Math.pow
+    call _PrintString
+    _T42 = 2
+    _T43 = 3
     parm _T42
-    call _PrintInt
-    _T43 = "\n"
     parm _T43
-    call _PrintString
-    _T44 = 16
+    _T44 =  call _Math.pow
     parm _T44
-    _T45 =  call _Math.log
+    call _PrintInt
+    _T45 = "\n"
     parm _T45
-    call _PrintInt
-    _T46 = "\n"
+    call _PrintString
+    _T46 = 16
     parm _T46
-    call _PrintString
-    _T47 = 1
-    _T48 = 2
+    _T47 =  call _Math.log
     parm _T47
+    call _PrintInt
+    _T48 = "\n"
     parm _T48
-    _T49 =  call _Math.max
-    parm _T49
-    call _PrintInt
-    _T50 = "\n"
-    parm _T50
     call _PrintString
-    _T51 = 1
-    _T52 = 2
+    _T49 = 1
+    _T50 = 2
+    parm _T49
+    parm _T50
+    _T51 =  call _Math.max
     parm _T51
-    parm _T52
-    _T53 =  call _Math.min
-    parm _T53
     call _PrintInt
-    _T54 = "\n"
+    _T52 = "\n"
+    parm _T52
+    call _PrintString
+    _T53 = 1
+    _T54 = 2
+    parm _T53
     parm _T54
+    _T55 =  call _Math.min
+    parm _T55
+    call _PrintInt
+    _T56 = "\n"
+    parm _T56
     call _PrintString
 }
 

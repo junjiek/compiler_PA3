@@ -1,9 +1,2 @@
-vm crash at (45,17), tac = _T16 = (_T0 / _T12)
-Caused by:
-java.lang.ArithmeticException: / by zero
-	at decaf.tacvm.exec.Executor.exec(Unknown Source)
-	at decaf.tacvm.TacVM.run(Unknown Source)
-	at decaf.tacvm.TacVM.main(Unknown Source)
-stack trace:
-	(46,10), tac = _T13 = _T16
-	(25,12), tac = _T8 = call _Main.isSquare
+true
+false
