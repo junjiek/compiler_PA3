@@ -673,7 +673,7 @@ public abstract class Tree {
    }
 
     /**
-      * A for loop.
+      * A Repeat loop.
       */
     public static class RepeatLoop extends Tree {
       public Expr condition;
