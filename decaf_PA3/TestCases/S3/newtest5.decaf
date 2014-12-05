@@ -4,14 +4,15 @@ class Main {
         int j;
         i = 4;
         j = 3;
-        if((i = j++) != 4)
-        {
-            Print(j, "\n");   //4
-        }
+        //if((i = j++) != 4)
+        //{
+        //    Print(j, "\n");   //4
+        //}
 
         int k;
         int m;
         int n;
+        i = 3;
         k = i ++ + i ++;    //k=i+i;i++;i++;   k = 6, i = 5
         m = ++i + ++i;      //++i;++i;m=i+i;   m = 14, i = 7
         n = i ++ + ++ i;    //++i;n=i+i;i++;   n = 16, i = 9
