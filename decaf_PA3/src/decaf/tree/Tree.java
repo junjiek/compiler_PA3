@@ -1036,7 +1036,7 @@ public abstract class Tree {
     /**
       * A assignment with "=".
       */
-    public static class Assign extends Tree {
+    public static class Assign extends Expr {
 
     	public LValue left;
     	public Expr expr;
