@@ -1,5 +1,7 @@
 package decaf.translate;
 
+import java.awt.List;
+import java.util.ArrayList;
 import java.util.Stack;
 
 import decaf.tree.Tree;
@@ -375,6 +377,49 @@ public class TransPass2 extends Tree.Visitor {
 		expr.expr2.accept(this);
 		tr.genAssign(expr.val, expr.expr2.val);
 		tr.genMark(exit);
+	}
+	@Override
+	public void visitSwitch(Tree.Switch myswitch) {
+		myswitch.condition.accept(this);
+		Label exit = Label.createLabel();
+		Label defaultLabel = Label.createLabel();
+		if (myswitch.body != null) {
+			Tree.SwitchBlock switchBlock = myswitch.body;
+			if (switchBlock.caseList != null) {
+				ArrayList<Label> caseLabels = new ArrayList<Label>();
+				for (Tree mycase : switchBlock.caseList) {
+					((Tree.Case)mycase).condition.accept(this);
+					Label caseLabel = Label.createLabel();
+					caseLabels.add(caseLabel);
+					tr.genBeqz(tr.genSub(myswitch.condition.val,
+								((Tree.Case)mycase).condition.val), caseLabel);
+				}
+				tr.genBranch(defaultLabel);
+				for (int i = 0; i < switchBlock.caseList.size(); i++) {
+					tr.genMark(caseLabels.get(i));
+					((Tree.Case)switchBlock.caseList.get(i)).body.accept(this);
+					tr.genBranch(exit);
+				}
+			}
+			if (switchBlock.defaultCase != null) {
+				Tree.Default mydefault =  ((Tree.Default)switchBlock.defaultCase);
+				if (mydefault.body != null) {
+					tr.genMark(defaultLabel);
+					mydefault.body.accept(this);
+				}
+				tr.genBranch(exit);
+			}
+		}
+		tr.genMark(exit);
+	}
+
+	@Override
+	public void visitCaseBlock(Tree.CaseBlock caseBlock) {	
+		if (caseBlock.body != null) {
+			for (Tree s : caseBlock.body) {
+				s.accept(this);
+			}
+		}
 	}
 
 	@Override
