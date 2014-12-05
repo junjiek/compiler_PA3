@@ -362,6 +362,22 @@ public class TransPass2 extends Tree.Visitor {
 	}
 
 	@Override
+	public void visitTernary(Tree.Ternary expr) {
+		expr.val = Temp.createTempI4();
+		expr.condition.accept(this);
+		Label expr2Label = Label.createLabel();
+		Label exit = Label.createLabel();
+		tr.genBeqz(expr.condition.val, expr2Label);
+		expr.expr1.accept(this);
+		tr.genAssign(expr.val, expr.expr1.val);
+		tr.genBranch(exit);
+		tr.genMark(expr2Label);
+		expr.expr2.accept(this);
+		tr.genAssign(expr.val, expr.expr2.val);
+		tr.genMark(exit);
+	}
+
+	@Override
 	public void visitNewArray(Tree.NewArray newArray) {
 		newArray.length.accept(this);
 		newArray.val = tr.genNewArray(newArray.length.val);
