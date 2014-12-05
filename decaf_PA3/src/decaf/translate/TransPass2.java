@@ -375,13 +375,13 @@ public class TransPass2 extends Tree.Visitor {
 	public void visitRepeatLoop(Tree.RepeatLoop repeatLoop) {
 		Label loop = Label.createLabel();
 		tr.genMark(loop);
-		repeatLoop.condition.accept(this);
 		Label exit = Label.createLabel();
-		tr.genBnez(repeatLoop.condition.val, exit);
 		loopExits.push(exit);
 		if (repeatLoop.loopBody != null) {
 			repeatLoop.loopBody.accept(this);
 		}
+		repeatLoop.condition.accept(this);
+		tr.genBnez(repeatLoop.condition.val, exit);
 		tr.genBranch(loop);
 		loopExits.pop();
 		tr.genMark(exit);

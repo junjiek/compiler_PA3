@@ -80,33 +80,33 @@ _Main.start:
     _T28 = 1
     _T25 = _T28
 _L18:
-    _T29 = 5
-    _T30 = (_T25 > _T29)
-    if (_T30 != 0) branch _L19
-    _T31 = 2
-    _T32 = (_T25 % _T31)
-    _T33 = 0
-    _T34 = (_T32 == _T33)
-    if (_T34 == 0) branch _L20
+    _T29 = 2
+    _T30 = (_T25 % _T29)
+    _T31 = 0
+    _T32 = (_T30 == _T31)
+    if (_T32 == 0) branch _L20
     parm _T2
     parm _T25
-    _T35 = *(_T2 + 0)
-    _T36 = *(_T35 + 8)
-    _T37 =  call _T36
-    _T27 = _T37
+    _T33 = *(_T2 + 0)
+    _T34 = *(_T33 + 8)
+    _T35 =  call _T34
+    _T27 = _T35
     branch _L19
 _L20:
-    _T38 = "Loop "
-    parm _T38
+    _T36 = "Loop "
+    parm _T36
     call _PrintString
     parm _T25
     call _PrintInt
-    _T39 = "\n"
-    parm _T39
+    _T37 = "\n"
+    parm _T37
     call _PrintString
-    _T40 = 1
-    _T41 = (_T25 + _T40)
-    _T25 = _T41
+    _T38 = 1
+    _T39 = (_T25 + _T38)
+    _T25 = _T39
+    _T40 = 5
+    _T41 = (_T25 > _T40)
+    if (_T41 != 0) branch _L19
     branch _L18
 _L19:
     _T42 = 0
