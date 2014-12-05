@@ -79,81 +79,111 @@ memo '_T2:4'
 _Main.start:
     _T28 = 1
     _T25 = _T28
-    _T29 = 0
-    _T30 = *(_T27 - 4)
-    _T31 = (_T29 < _T30)
-    if (_T31 == 0) branch _L18
-    _T32 = 0
-    _T33 = (_T29 < _T32)
-    if (_T33 == 0) branch _L19
 _L18:
-    _T34 = "Decaf runtime error: Array subscript out of bounds\n"
-    parm _T34
-    call _PrintString
-    call _Halt
-_L19:
-    _T35 = 4
-    _T36 = (_T29 * _T35)
-    _T37 = (_T27 + _T36)
-    _T38 = *(_T37 + 0)
-    _T39 = 0
-    _T40 = 4
-    _T41 = (_T29 * _T40)
-    _T42 = (_T27 + _T41)
-    *(_T42 + 0) = _T39
-    _T43 = 0
-    _T44 = *(_T27 - 4)
-    _T45 = (_T43 < _T44)
-    if (_T45 == 0) branch _L20
-    _T46 = 0
-    _T47 = (_T43 < _T46)
-    if (_T47 == 0) branch _L21
+    _T29 = 5
+    _T30 = (_T25 > _T29)
+    if (_T30 != 0) branch _L19
+    _T31 = 2
+    _T32 = (_T25 % _T31)
+    _T33 = 0
+    _T34 = (_T32 == _T33)
+    if (_T34 == 0) branch _L20
+    parm _T2
+    parm _T25
+    _T35 = *(_T2 + 0)
+    _T36 = *(_T35 + 8)
+    _T37 =  call _T36
+    _T27 = _T37
+    branch _L19
 _L20:
-    _T48 = "Decaf runtime error: Array subscript out of bounds\n"
-    parm _T48
+    _T38 = "Loop "
+    parm _T38
     call _PrintString
-    call _Halt
+    parm _T25
+    call _PrintInt
+    _T39 = "\n"
+    parm _T39
+    call _PrintString
+    _T40 = 1
+    _T41 = (_T25 + _T40)
+    _T25 = _T41
+    branch _L18
+_L19:
+    _T42 = 0
+    _T43 = *(_T27 - 4)
+    _T44 = (_T42 < _T43)
+    if (_T44 == 0) branch _L21
+    _T45 = 0
+    _T46 = (_T42 < _T45)
+    if (_T46 == 0) branch _L22
 _L21:
-    _T49 = 4
-    _T50 = (_T43 * _T49)
-    _T51 = (_T27 + _T50)
-    _T52 = *(_T51 + 0)
-    _T53 = *(_T27 - 4)
-    _T54 = (_T52 < _T53)
-    if (_T54 == 0) branch _L22
-    _T55 = 0
-    _T56 = (_T52 < _T55)
-    if (_T56 == 0) branch _L23
-_L22:
-    _T57 = "Decaf runtime error: Array subscript out of bounds\n"
-    parm _T57
+    _T47 = "Decaf runtime error: Array subscript out of bounds\n"
+    parm _T47
     call _PrintString
     call _Halt
+_L22:
+    _T48 = 4
+    _T49 = (_T42 * _T48)
+    _T50 = (_T27 + _T49)
+    _T51 = *(_T50 + 0)
+    _T52 = 0
+    _T53 = 4
+    _T54 = (_T42 * _T53)
+    _T55 = (_T27 + _T54)
+    *(_T55 + 0) = _T52
+    _T56 = 0
+    _T57 = *(_T27 - 4)
+    _T58 = (_T56 < _T57)
+    if (_T58 == 0) branch _L23
+    _T59 = 0
+    _T60 = (_T56 < _T59)
+    if (_T60 == 0) branch _L24
 _L23:
-    _T58 = 4
-    _T59 = (_T52 * _T58)
-    _T60 = (_T27 + _T59)
-    _T61 = *(_T60 + 0)
+    _T61 = "Decaf runtime error: Array subscript out of bounds\n"
     parm _T61
-    call _PrintInt
-    _T62 = "\n"
-    parm _T62
     call _PrintString
-    _T63 = *(_T27 - 4)
-    parm _T63
+    call _Halt
+_L24:
+    _T62 = 4
+    _T63 = (_T56 * _T62)
+    _T64 = (_T27 + _T63)
+    _T65 = *(_T64 + 0)
+    _T66 = *(_T27 - 4)
+    _T67 = (_T65 < _T66)
+    if (_T67 == 0) branch _L25
+    _T68 = 0
+    _T69 = (_T65 < _T68)
+    if (_T69 == 0) branch _L26
+_L25:
+    _T70 = "Decaf runtime error: Array subscript out of bounds\n"
+    parm _T70
+    call _PrintString
+    call _Halt
+_L26:
+    _T71 = 4
+    _T72 = (_T65 * _T71)
+    _T73 = (_T27 + _T72)
+    _T74 = *(_T73 + 0)
+    parm _T74
     call _PrintInt
-    _T64 = "\n"
-    parm _T64
+    _T75 = "\n"
+    parm _T75
+    call _PrintString
+    _T76 = *(_T27 - 4)
+    parm _T76
+    call _PrintInt
+    _T77 = "\n"
+    parm _T77
     call _PrintString
 }
 
 FUNCTION(main) {
 memo ''
 main:
-    _T65 =  call _Main_New
-    parm _T65
-    _T66 = *(_T65 + 0)
-    _T67 = *(_T66 + 12)
-    call _T67
+    _T78 =  call _Main_New
+    parm _T78
+    _T79 = *(_T78 + 0)
+    _T80 = *(_T79 + 12)
+    call _T80
 }
 

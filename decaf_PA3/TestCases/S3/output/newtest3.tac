@@ -40,8 +40,16 @@ memo '_T0:4'
 _Main.isSquare:
     _T14 = 0
     _T12 = _T14
-    _T15 = (_T13 * _T13)
-    _T16 = (_T0 == _T15)
-    return _T16
+_L11:
+    _T15 = (_T12 >= _T13)
+    if (_T15 != 0) branch _L12
+    _T16 = ! _T12
+    _T17 = (_T0 / _T12)
+    _T13 = _T17
+    branch _L11
+_L12:
+    _T18 = (_T13 * _T13)
+    _T19 = (_T0 == _T18)
+    return _T19
 }
 
