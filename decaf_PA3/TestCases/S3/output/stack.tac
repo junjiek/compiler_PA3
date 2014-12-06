@@ -1,5 +1,4 @@
 VTABLE(_Stack) {
-    <empty>
     Stack
     _Stack.Init;
     _Stack.Push;
@@ -8,7 +7,6 @@ VTABLE(_Stack) {
 }
 
 VTABLE(_Main) {
-    <empty>
     Main
 }
 

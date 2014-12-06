@@ -1,5 +1,4 @@
 VTABLE(_Matrix) {
-    <empty>
     Matrix
     _Matrix.Init;
     _Matrix.Set;
@@ -9,7 +8,6 @@ VTABLE(_Matrix) {
 }
 
 VTABLE(_DenseMatrix) {
-    _Matrix
     DenseMatrix
     _DenseMatrix.Init;
     _DenseMatrix.Set;
@@ -19,7 +17,6 @@ VTABLE(_DenseMatrix) {
 }
 
 VTABLE(_SparseItem) {
-    <empty>
     SparseItem
     _SparseItem.Init;
     _SparseItem.GetNext;
@@ -29,7 +26,6 @@ VTABLE(_SparseItem) {
 }
 
 VTABLE(_SparseMatrix) {
-    _Matrix
     SparseMatrix
     _SparseMatrix.Init;
     _SparseMatrix.Set;
@@ -40,7 +36,6 @@ VTABLE(_SparseMatrix) {
 }
 
 VTABLE(_Main) {
-    <empty>
     Main
 }
 

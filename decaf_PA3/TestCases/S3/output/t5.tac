@@ -1,12 +1,10 @@
 VTABLE(_Cow) {
-    <empty>
     Cow
     _Cow.Init;
     _Cow.Moo;
 }
 
 VTABLE(_Main) {
-    <empty>
     Main
 }
 

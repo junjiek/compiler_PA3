@@ -1,17 +1,14 @@
 VTABLE(_Computer) {
-    <empty>
     Computer
     _Computer.Crash;
 }
 
 VTABLE(_Mac) {
-    _Computer
     Mac
     _Mac.Crash;
 }
 
 VTABLE(_Main) {
-    <empty>
     Main
 }
 

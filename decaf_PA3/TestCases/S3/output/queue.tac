@@ -1,5 +1,4 @@
 VTABLE(_QueueItem) {
-    <empty>
     QueueItem
     _QueueItem.Init;
     _QueueItem.GetData;
@@ -10,7 +9,6 @@ VTABLE(_QueueItem) {
 }
 
 VTABLE(_Queue) {
-    <empty>
     Queue
     _Queue.Init;
     _Queue.EnQueue;
@@ -18,7 +16,6 @@ VTABLE(_Queue) {
 }
 
 VTABLE(_Main) {
-    <empty>
     Main
 }
 

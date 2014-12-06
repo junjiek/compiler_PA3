@@ -1,10 +1,8 @@
 VTABLE(_Math) {
-    <empty>
     Math
 }
 
 VTABLE(_Main) {
-    <empty>
     Main
 }
 

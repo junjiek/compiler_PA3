@@ -1,5 +1,4 @@
 VTABLE(_Main) {
-    <empty>
     Main
     _Main.tester;
     _Main.start;

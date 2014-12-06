@@ -1,5 +1,4 @@
 VTABLE(_Animal) {
-    <empty>
     Animal
     _Animal.InitAnimal;
     _Animal.GetHeight;
@@ -7,7 +6,6 @@ VTABLE(_Animal) {
 }
 
 VTABLE(_Cow) {
-    _Animal
     Cow
     _Animal.InitAnimal;
     _Animal.GetHeight;
@@ -17,7 +15,6 @@ VTABLE(_Cow) {
 }
 
 VTABLE(_Main) {
-    <empty>
     Main
 }
 
