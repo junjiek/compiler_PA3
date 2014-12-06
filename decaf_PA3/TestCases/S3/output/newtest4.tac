@@ -76,7 +76,6 @@ _Main.getNumberOfDays:
 _L14:
     _T44 = 31
     return _T44
-    branch _L12
 _L15:
     parm _T1
     _T46 =  call _Main.isLeapYear
@@ -89,52 +88,40 @@ _L26:
     _T45 = _T48
 _L27:
     return _T45
-    branch _L12
 _L16:
     _T49 = 31
     return _T49
-    branch _L12
 _L17:
     _T50 = 30
     return _T50
-    branch _L12
 _L18:
     _T51 = 31
     return _T51
-    branch _L12
 _L19:
     _T52 = 30
     return _T52
-    branch _L12
 _L20:
     _T53 = 31
     return _T53
-    branch _L12
 _L21:
     _T54 = 31
     return _T54
-    branch _L12
 _L22:
     _T55 = 30
     return _T55
-    branch _L12
 _L23:
     _T56 = 31
     return _T56
-    branch _L12
 _L24:
     _T57 = 30
     return _T57
-    branch _L12
 _L25:
     _T58 = 31
     return _T58
-    branch _L12
 _L13:
     _T59 = 1
     _T60 = - _T59
     return _T60
-    branch _L12
 _L12:
 }
 

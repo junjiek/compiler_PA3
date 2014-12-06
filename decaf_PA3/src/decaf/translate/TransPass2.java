@@ -382,6 +382,7 @@ public class TransPass2 extends Tree.Visitor {
 	public void visitSwitch(Tree.Switch myswitch) {
 		myswitch.condition.accept(this);
 		Label exit = Label.createLabel();
+		loopExits.push(exit);
 		Label defaultLabel = Label.createLabel();
 		if (myswitch.body != null) {
 			Tree.SwitchBlock switchBlock = myswitch.body;
@@ -398,7 +399,6 @@ public class TransPass2 extends Tree.Visitor {
 				for (int i = 0; i < switchBlock.caseList.size(); i++) {
 					tr.genMark(caseLabels.get(i));
 					((Tree.Case)switchBlock.caseList.get(i)).body.accept(this);
-					tr.genBranch(exit);
 				}
 			}
 			if (switchBlock.defaultCase != null) {
@@ -407,9 +407,9 @@ public class TransPass2 extends Tree.Visitor {
 					tr.genMark(defaultLabel);
 					mydefault.body.accept(this);
 				}
-				tr.genBranch(exit);
 			}
 		}
+		loopExits.pop();
 		tr.genMark(exit);
 	}
 
